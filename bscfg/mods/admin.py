@@ -572,47 +572,7 @@ class Enhancement(bs.Actor):
 
         self.checkDeadTimer = bs.Timer(
             150, bs.WeakCall(self.checkPlayerifDead), repeat=True)
-
-
-
-    def evilName(self):
-        spaz = self.spazRef()
-        if spaz is not None and spaz.isAlive() and spaz.node.exists():
-            simbols = "!@#$%^&*()_+=-<>?/.,;:[]{}"
-            distorted = ''.join(random.choice(simbols) for _ in spaz.node.name)
-            spaz.node.name = distorted
-
-
-    def footPrints(self):
-        spaz = self.spazRef()
-        if spaz is not None and spaz.isAlive() and spaz.footing:
-            p = spaz.node.position
-            p2 = self.last_pos
-            diff = (bs.Vector(p[0] - p2[0], 0.0, p[2] - p2[2]))
-            dist = (diff.length())
-            if dist > 0.2:
-                c = spaz.node.highlight
-                r = bs.newNode('locator',
-                               owner=spaz.node,
-                               attrs={
-                                   'shape': 'circle',
-                                   'position': p,
-                                   'color': spaz.node.color if c else
-                                   (5, 5, 5),
-                                   'opacity': 1,
-                                   'drawBeauty': False,
-                                   'additive': False,
-                                   'size': [0.15]
-                               })
-                bsUtils.animateArray(r, 'size', 2, {
-                    0: [0.15],
-                    2500: [0.15],
-                    3000: [0]
-                })
-                bs.gameTimer(3000, r.delete)
-                self.last_pos = spaz.node.position
-
-
+        
     def checkPlayerifDead(self):
         spaz = self.spazRef()
         if spaz is None or not spaz.isAlive() or not spaz.node.exists():
@@ -765,6 +725,41 @@ class Enhancement(bs.Actor):
             spread=0.2,
             chunkType="metal",
         )
+    def evilName(self):
+        spaz = self.spazRef()
+        if spaz is not None and spaz.isAlive() and spaz.node.exists():
+            simbols = "!@#$%^&*()_+=-<>?/.,;:[]{}"
+            distorted = ''.join(random.choice(simbols) for _ in spaz.node.name)
+            spaz.node.name = distorted
+
+    def footPrints(self):
+        spaz = self.spazRef()
+        if spaz is not None and spaz.isAlive() and spaz.footing:
+            p = spaz.node.position
+            p2 = self.last_pos
+            diff = (bs.Vector(p[0] - p2[0], 0.0, p[2] - p2[2]))
+            dist = (diff.length())
+            if dist > 0.2:
+                c = spaz.node.highlight
+                r = bs.newNode('locator',
+                               owner=spaz.node,
+                               attrs={
+                                   'shape': 'circle',
+                                   'position': p,
+                                   'color': spaz.node.color if c else
+                                   (5, 5, 5),
+                                   'opacity': 1,
+                                   'drawBeauty': False,
+                                   'additive': False,
+                                   'size': [0.15]
+                               })
+                bsUtils.animateArray(r, 'size', 2, {
+                    0: [0.15],
+                    2500: [0.15],
+                    3000: [0]
+                })
+                bs.gameTimer(3000, r.delete)
+                self.last_pos = spaz.node.position
 
     def handleMessage(self, m):
         # self._handleMessageSanityCheck()
