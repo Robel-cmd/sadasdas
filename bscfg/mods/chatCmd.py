@@ -291,29 +291,6 @@ class chatOptions(object):
                 elif m == 'death':
                                 i.actor.node.handleMessage(
                                 bs.DieMessage())
-                elif m == 'spawn'and level > 2:
-                        if a == []:
-                            if player.isAlive() or player.actor:
-                                bs.screenMessage("Ya estas Jugando...", transient=True, clients=[clientID])
-                            else:
-                                if activity.hasBegun():
-                                    activity.spawnPlayer(player)
-                elif m == 'dbomb':
-                    try:
-                        i.actor.node.handleMessage(
-                            bs.PowerupMessage(powerupType='dbomb'))
-                        bs.screenMessage('bombas desactivadas')
-                        ommandSuccess = True
-                    except Exception:
-                        pass
-                elif m == 'zoe':
-                    try:
-                        i.actor.node.handleMessage(
-                            bs.PowerupMessage(powerupType='troll'))
-                        bs.screenMessage('ere zoe pe')
-                        ommandSuccess = True
-                    except Exception:
-                        pass
 
                 elif m == 'teamName' and level > 3:
                     if a == []:
@@ -347,21 +324,21 @@ class chatOptions(object):
                                 if sendersID == receiversID:
                                     bs.screenMessage(
                                         'You can\'t transfer to your own account', color=(1, 0, 0))
-                                elif coinSystem.getCoins(sendersID) > 1000000:
+                                elif transfer > 100000:
                                     bsInternal._chatMessage(
-                                        'solo se puede regalar 1M ' + bs.getSpecialChar('ticket') + ' ala vez')
+                                        'solo se puede regalar 100k ' + bs.getSpecialChar('ticket') + ' ala vez')
                                 else:
                                     #coinSystem.addCoins(
                                         #sendersID, int(transfer * -1))
                                     coinSystem.addCoins(
                                         receiversID, int(transfer))
                                     bsInternal._chatMessage('tranferencia Hecha ' + bs.getSpecialChar(
-                                        'ticket') + a[0] + ' en ' + name + "en cuenta de ")
+                                        'ticket') + a[0] + ' a ' + name )
                             else:
                                 bs.screenMessage(
                                     'Player not Found', color=(1, 0, 0))
                     except:
-                        bs.screenMessage('Usage: /donate amount clientID',
+                        bs.screenMessage('Use: /give monto clientID',
                                          transient=True, clients=[clientID])
 
                 elif m == 'floater' and level > 2:
@@ -605,6 +582,29 @@ class chatOptions(object):
                         bs.getSharedObject('globals').tint = (0.5, 0.7, 1) if a == [
                         ] or not a[0] == 'off' else self.tint
                         commandSuccess = True
+                    elif m == 'spawn' :
+                        if a == []:
+                            if player.isAlive() or player.actor:
+                                bs.screenMessage("Ya estas Jugando...", transient=True, clients=[clientID])
+                            else:
+                                if activity.hasBegun():
+                                    activity.spawnPlayer(player)
+                    elif m == 'zoe':
+                        try:
+                            i.actor.node.handleMessage(
+                                bs.PowerupMessage(powerupType='Troll'))
+                            bs.screenMessage('ere zoe pe')
+                            ommandSuccess = True
+                        except Exception:
+                            pass
+                    elif m == 'dbomb':
+                        try:
+                            i.actor.node.handleMessage(
+                                bs.PowerupMessage(powerupType='dbomb'))
+                            bs.screenMessage('bombas desactivadas')
+                            ommandSuccess = True
+                        except Exception:
+                            pass
                     elif m == 'ooh':
                         if a is not None and len(a) > 0:
                             s = 1
