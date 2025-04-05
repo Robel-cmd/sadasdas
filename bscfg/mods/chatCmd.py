@@ -589,12 +589,13 @@ class chatOptions(object):
                             else:
                                 if activity.hasBegun():
                                     activity.spawnPlayer(player)
+                                commandSuccess = True
                     elif m == 'zoe':
                         try:
                             i.actor.node.handleMessage(
                                 bs.PowerupMessage(powerupType='Troll'))
                             bs.screenMessage('ere zoe pe')
-                            ommandSuccess = True
+                            commandSuccess = True
                         except Exception:
                             pass
                     elif m == 'dbomb':
@@ -602,7 +603,7 @@ class chatOptions(object):
                             i.actor.node.handleMessage(
                                 bs.PowerupMessage(powerupType='dbomb'))
                             bs.screenMessage('bombas desactivadas')
-                            ommandSuccess = True
+                            commandSuccess = True
                         except Exception:
                             pass
                     elif m == 'ooh':

@@ -77,9 +77,9 @@ availableCommands = {'nv': 10,
                      'heal': 50,
                      'healall': 70,
                      'gm': 5000,
-                     'spawn':250,
-                     'dbomb':10,
-                     'zoe':20}
+                     'spawn': 250,
+                     'dbomb': 10,
+                     'zoe': 20}
 
 availableEffects = {'ice': 500,
                     'sweat': 500,
