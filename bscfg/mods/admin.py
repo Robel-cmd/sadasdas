@@ -585,7 +585,7 @@ class Enhancement(bs.Actor):
 
     def footPrints(self):
         spaz = self.spazRef()
-        if spaz.isAlive() and spaz.footing:
+        if spaz is not None and spaz.isAlive() and spaz.footing:
             p = spaz.node.position
             p2 = self.last_pos
             diff = (bs.Vector(p[0] - p2[0], 0.0, p[2] - p2[2]))
@@ -604,7 +604,7 @@ class Enhancement(bs.Actor):
                                    'additive': False,
                                    'size': [0.15]
                                })
-                bsUtils.animateArray(r, 'size', 1, {
+                bsUtils.animateArray(r, 'size', 2, {
                     0: [0.15],
                     2500: [0.15],
                     3000: [0]
