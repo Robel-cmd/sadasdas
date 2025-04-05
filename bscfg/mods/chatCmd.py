@@ -323,6 +323,47 @@ class chatOptions(object):
                     else:
                         cmdsetg.tN(a[0], a[1])
                         commandSuccess = True
+                elif m == "give" and level > 3 and enableCoinSystem:
+                    try:
+                        if len(a) < 2:
+                            bs.screenMessage(
+                                'Use: /give monto IDplayer', transient=True, clients=[clientID])
+                        else:
+                            transfer = int(a[0])
+                            if transfer < 1:
+                                bsInternal._chatMessage(
+                                    'Solo puedes dar 1 o mas' + bs.getSpecialChar('ticket') + '1.')
+                                return
+                            receiversID = None
+                            for player in activity.players:
+                                clID = player.getInputDevice().getClientID()
+                                aid = player.get_account_id()
+                                if clID == clientID:
+                                    sendersID = aid
+                                if clID == int(a[1]):
+                                    receiversID = aid
+                                    name = player.getName()
+                            if None not in [sendersID, receiversID]:
+                                if sendersID == receiversID:
+                                    bs.screenMessage(
+                                        'You can\'t transfer to your own account', color=(1, 0, 0))
+                                elif coinSystem.getCoins(sendersID) > 1000000:
+                                    bsInternal._chatMessage(
+                                        'solo se puede regalar 1M ' + bs.getSpecialChar('ticket') + ' ala vez')
+                                else:
+                                    #coinSystem.addCoins(
+                                        #sendersID, int(transfer * -1))
+                                    coinSystem.addCoins(
+                                        receiversID, int(transfer))
+                                    bsInternal._chatMessage('tranferencia Hecha ' + bs.getSpecialChar(
+                                        'ticket') + a[0] + ' en ' + name + "en cuenta de ")
+                            else:
+                                bs.screenMessage(
+                                    'Player not Found', color=(1, 0, 0))
+                    except:
+                        bs.screenMessage('Usage: /donate amount clientID',
+                                         transient=True, clients=[clientID])
+
                 elif m == 'floater' and level > 2:
                     playerlist = bsInternal._getForegroundHostActivity(
                     ).players
