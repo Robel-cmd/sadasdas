@@ -307,10 +307,6 @@ class chatOptions(object):
                                 'Use: /give monto IDplayer', transient=True, clients=[clientID])
                         else:
                             transfer = int(a[0])
-                            if transfer < 1:
-                                bsInternal._chatMessage(
-                                    'Solo puedes dar 1 o mas' + bs.getSpecialChar('ticket') + '1.')
-                                return
                             receiversID = None
                             for player in activity.players:
                                 clID = player.getInputDevice().getClientID()
@@ -912,7 +908,7 @@ class chatOptions(object):
                                     bsInternal._chatMessage(
                                         'Failed!! Usage: /sleepall or /sleep number of list')
 
-                        elif m in ('kill', 'killall'):
+                        elif m in ('kill', 'killall') and level > 3:
                             if m == 'killall':
                                 for i in bs.getSession().players:
                                     try:
@@ -1156,7 +1152,7 @@ class chatOptions(object):
                                 except:
                                     bs.screenMessage('Error!', color=(1, 0, 0))
 
-                            elif m == 'tint':
+                            elif m == 'tint' and level >1:
                                 if a == []:
                                     bsInternal._chatMessage(
                                         'Using: /tint R G B')
@@ -1310,7 +1306,7 @@ class chatOptions(object):
 
                                     commandSuccess = True
 
-                            elif m == 'gm':
+                            elif m == 'gm' and level > 1:
                                 try:
                                     if a == []:
                                         for i in range(len(activity.players)):
