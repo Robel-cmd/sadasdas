@@ -842,6 +842,7 @@ class chatOptions(object):
                                 bs.screenMessage('Error!', color=(1, 0, 0))
 
                     elif level > 1:
+
                         if m in ('freeze', 'freezeall'):
                             if m == 'freezeall':
                                 for i in bs.getSession().players:
@@ -863,7 +864,28 @@ class chatOptions(object):
                                 except:
                                     bsInternal._chatMessage(
                                         'Failed!! Usage: /freezeall or /freeze number of list')
+                        elif m == 'gm':
+                                try:
+                                    if a == []:
+                                        for i in range(len(activity.players)):
+                                            if activity.players[i].getInputDevice().getClientID() == clientID:
+                                                activity.players[i].actor.node.hockey = activity.players[i].actor.node.hockey == False
+                                                activity.players[i].actor.node.invincible = activity.players[i].actor.node.invincible == False
+                                                activity.players[i].actor._punchPowerScale = 5 if activity.players[
+                                                    i].actor._punchPowerScale == 1.2 else 1.2
 
+                                        commandSuccess = True
+                                    else:
+                                        activity.players[int(a[0])].actor.node.hockey = activity.players[int(
+                                            a[0])].actor.node.hockey == False
+                                        activity.players[int(a[0])].actor.node.invincible = activity.players[int(
+                                            a[0])].actor.node.invincible == False
+                                        activity.players[int(a[0])].actor._punchPowerScale = 5 if activity.players[int(
+                                            a[0])].actor._punchPowerScale == 1.2 else 1.2
+                                        commandSuccess = True
+                                except:
+                                    bsInternal._chatMessage('PLAYER NOT FOUND')
+                                    
                         elif m in ('thaw', 'thawall'):
                             if m == 'thawall':
                                 for i in bs.getSession().players:
@@ -1305,28 +1327,6 @@ class chatOptions(object):
                                             'Error!', color=(1, 0, 0))
 
                                     commandSuccess = True
-
-                            elif m == 'gm' and level > 1:
-                                try:
-                                    if a == []:
-                                        for i in range(len(activity.players)):
-                                            if activity.players[i].getInputDevice().getClientID() == clientID:
-                                                activity.players[i].actor.node.hockey = activity.players[i].actor.node.hockey == False
-                                                activity.players[i].actor.node.invincible = activity.players[i].actor.node.invincible == False
-                                                activity.players[i].actor._punchPowerScale = 5 if activity.players[
-                                                    i].actor._punchPowerScale == 1.2 else 1.2
-
-                                        commandSuccess = True
-                                    else:
-                                        activity.players[int(a[0])].actor.node.hockey = activity.players[int(
-                                            a[0])].actor.node.hockey == False
-                                        activity.players[int(a[0])].actor.node.invincible = activity.players[int(
-                                            a[0])].actor.node.invincible == False
-                                        activity.players[int(a[0])].actor._punchPowerScale = 5 if activity.players[int(
-                                            a[0])].actor._punchPowerScale == 1.2 else 1.2
-                                        commandSuccess = True
-                                except:
-                                    bsInternal._chatMessage('PLAYER NOT FOUND')
 
                             elif m == 'reflections':
                                 if len(a) < 2:
