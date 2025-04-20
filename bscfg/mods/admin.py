@@ -753,7 +753,7 @@ class Enhancement(bs.Actor):
                                    'additive': False,
                                    'size': [0.15]
                                })
-                bsUtils.animateArray(r, 'size', 2, {
+                bsUtils.animateArray(r, 'size', 1, {
                     0: [0.15],
                     2500: [0.15],
                     3000: [0]
