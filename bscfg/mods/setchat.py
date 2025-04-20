@@ -4,9 +4,9 @@ import bs
 #You Will Need ChatReply.py From Our Repository
 #You Can Add Any Ammount Of Msg Just type
 #Msg List
-allow = True
+allow = False
 
-messageList = ['si', 'no']
+messageList = ['']
 #Msg Timer 
 chatMessageTime = 110 #seconds
 #Change According To U
