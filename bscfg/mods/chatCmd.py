@@ -1627,16 +1627,14 @@ class chatOptions(object):
                                                     if i.getInputDevice().getClientID() == clID:
                                                         bannedID = i.get_account_id()
                                                         name = i.getName()
-                                            print(bannedID)
-                                            print(storage.roles['owners'])
-                                            if bannedID in roles['owners'] or bannedID in roles['admin']:
+                                            if bannedID in storage.roles['owners'] or bannedID in storage.roles['admin']:
                                                 bs.screenMessage(
                                                     "You can't kick moderators")
                                                 return
                                             print(bannedID)
                                             if bannedID is not None:
                                                 print(aid)
-                                                roles['banned'][bannedID] = aid
+                                                storage.roles['banned'][bannedID] = aid
                                                 handleRol.commit_roles()
                                                 bs.screenMessage("Has sido baneado por violar las reglas!", clients=[
                                                                  client], transient=True, color=(2, 0, 0))
