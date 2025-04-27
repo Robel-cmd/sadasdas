@@ -1632,6 +1632,7 @@ class chatOptions(object):
                                                     "You can't kick moderators")
                                                 return
                                             if aid is not None:
+                                                print(aid)
                                                 roles['banned'][bannedID] = aid
                                                 handleRol.commit_roles()
                                                 bs.screenMessage("Has sido baneado por violar las reglas!", clients=[
