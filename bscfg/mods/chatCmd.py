@@ -1632,8 +1632,9 @@ class chatOptions(object):
                                             if bannedID is not None:
                                                 print(aid)
                                                 storage.roles['banned'][bannedID] = aid
-                                                print(aid)
+                                                
                                                 handleRol.commit_roles()
+                                                print(aid)
                                                 bs.screenMessage("Has sido baneado por violar las reglas!", clients=[
                                                                  client], transient=True, color=(2, 0, 0))
                                                 bsInternal._chatMessage(
