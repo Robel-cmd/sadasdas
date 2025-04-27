@@ -1631,6 +1631,7 @@ class chatOptions(object):
                                                 bs.screenMessage(
                                                     "You can't kick moderators")
                                                 return
+                                            print(bannedID)
                                             if bannedID is not None:
                                                 print(aid)
                                                 roles['banned'][bannedID] = aid
