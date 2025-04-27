@@ -1627,10 +1627,11 @@ class chatOptions(object):
                                                     if i.getInputDevice().getClientID() == clID:
                                                         bannedID = i.get_account_id()
                                                         name = i.getName()
-                                            if bannedID in storage.roles['owners'] or bannedID in storage.roles['admin']:
-                                                bs.screenMessage(
-                                                    "You can't kick moderators")
-                                                return
+                                            if bannedID in storage.roles['admin']:
+                                                 if bannedID in storage.roles['owners']:
+                                                    bs.screenMessage(
+                                                        "You can't kick moderators")
+                                                    return
                                             print(bannedID)
                                             if bannedID is not None:
                                                 print(aid)
