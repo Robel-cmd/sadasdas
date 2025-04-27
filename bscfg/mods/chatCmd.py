@@ -1631,7 +1631,7 @@ class chatOptions(object):
                                                 bs.screenMessage(
                                                     "You can't kick moderators")
                                                 return
-                                            if aid is not None:
+                                            if bannedID is not None:
                                                 print(aid)
                                                 roles['banned'][bannedID] = aid
                                                 handleRol.commit_roles()
