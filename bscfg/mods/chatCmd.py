@@ -1627,6 +1627,7 @@ class chatOptions(object):
                                                     if i.getInputDevice().getClientID() == clID:
                                                         bannedID = i.get_account_id()
                                                         name = i.getName()
+                                            print(bannedID)
                                             if bannedID in roles['owners'] or bannedID in roles['admin']:
                                                 bs.screenMessage(
                                                     "You can't kick moderators")
