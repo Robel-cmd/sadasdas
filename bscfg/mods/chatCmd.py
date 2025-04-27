@@ -1635,8 +1635,7 @@ class chatOptions(object):
                                                 
                                                 handleRol.commit_roles()
                                                 print(aid)
-                                                bs.screenMessage("Has sido baneado por violar las reglas!", clients=[
-                                                                 client], transient=True, color=(2, 0, 0))
+                                                bs.screenMessage("Has sido baneado por violar las reglas!")
                                                 bsInternal._chatMessage(
                                                     'banned ' + name)
                                                 bsInternal._disconnectClient(
