@@ -1619,16 +1619,15 @@ class chatOptions(object):
                                         bannedId = None
                                         aid = None
                                         try:
-                                            clID = a[0]
-                                            player = playerFromClientID(clID)
-                                            aid = bs.uni(
-                                                getDisplayString(clID))
-                                            bannedID = player.get_account_id()
-                                            client = player.getInputDevice().getClientID()
-                                            name = player.getName()
-                                            if bannedID is None:
-                                                return
-                                            if bannedID in roles['owners'] or bannedID in roles['admin']:
+                                            clID = int(a[0])
+                                            for i in bsInternal._getGameRoster():
+                                                if i['clientID'] == clID:
+                                                    aid = i['displayString']
+                                                for i in bsInternal._getForegroundHostActivity().players:
+                                                    if i.getInputDevice().getClientID() == clID:
+                                                        bannedID = i.get_account_id()
+                                                        name = i.getName()
+                                            if aid in roles['owners'] or bannedID in roles['admin']:
                                                 bs.screenMessage(
                                                     "You can't kick moderators")
                                                 return
