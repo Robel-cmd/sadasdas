@@ -1629,6 +1629,7 @@ class chatOptions(object):
                                                         name = i.getName()
                                             if bannedID in storage.roles['owners'] or bannedID in storage.roles['admins']:
                                                 bs.screenMessage("No puedes banear Moderadores")
+                                                return
                                             print(bannedID)
                                             if bannedID is not None:
                                                 print(aid)
