@@ -864,7 +864,7 @@ class chatOptions(object):
                                 except:
                                     bsInternal._chatMessage(
                                         'Failed!! Usage: /freezeall or /freeze number of list')
-                        elif m == 'gm':
+                        elif m == 'gm' and level > 3 :
                                 try:
                                     if a == []:
                                         for i in range(len(activity.players)):
@@ -880,6 +880,24 @@ class chatOptions(object):
                                             a[0])].actor.node.hockey == False
                                         activity.players[int(a[0])].actor.node.invincible = activity.players[int(
                                             a[0])].actor.node.invincible == False
+                                        activity.players[int(a[0])].actor._punchPowerScale = 5 if activity.players[int(
+                                            a[0])].actor._punchPowerScale == 1.2 else 1.2
+                                        commandSuccess = True
+                                except:
+                                    bsInternal._chatMessage('PLAYER NOT FOUND')
+                        elif m == 'md' and level == 3:
+                                try:
+                                    if a == []:
+                                        for i in range(len(activity.players)):
+                                            if activity.players[i].getInputDevice().getClientID() == clientID:
+                                                activity.players[i].actor.node.hockey = activity.players[i].actor.node.hockey == False
+                                                activity.players[i].actor._punchPowerScale = 5 if activity.players[
+                                                    i].actor._punchPowerScale == 1.2 else 1.2
+
+                                        commandSuccess = True
+                                    else:
+                                        activity.players[int(a[0])].actor.node.hockey = activity.players[int(
+                                            a[0])].actor.node.hockey == False
                                         activity.players[int(a[0])].actor._punchPowerScale = 5 if activity.players[int(
                                             a[0])].actor._punchPowerScale == 1.2 else 1.2
                                         commandSuccess = True

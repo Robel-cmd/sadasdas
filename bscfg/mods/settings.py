@@ -71,15 +71,15 @@ availableCommands = {'nv': 10,
                      'hug': 60,
                      'hugall': 100,
                      'tint': 800,
-                     'sm': 500,
+                     'md': 600,
                      'fly': 500,
                      'flyall': 1000,
                      'heal': 50,
                      'healall': 70,
-                     'gm': 5000,
                      'spawn': 250,
                      'dbomb': 5,
-                     'zoe': 10}
+                     'zoe': 10,
+                     'gp': 20}
 
 availableEffects = {'ice': 500,
                     'sweat': 500,
