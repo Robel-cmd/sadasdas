@@ -5,5 +5,5 @@ config['partyName'] = u'\ud83d\udca5CAOS EPIC SMASH | NA\ud83d\udca5'
 config['sessionType'] = 'ffa'
 config['maxPartySize'] = 15
 config['port'] = 43210
-config['playlistCode'] = 495299
+config['playlistCode'] = 528507
 config['statsURL'] = 'https://discord.gg/MyF6HxfcSp'

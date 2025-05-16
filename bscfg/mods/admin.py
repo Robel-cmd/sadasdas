@@ -415,12 +415,12 @@ class Enhancement(bs.Actor):
                         },
                     )
 
-            if cl_str in rol['toppers']:
-                 tag = getTag(1)
-                 if tag == '0':
-                     tag = u'\ue046TOP-RANK\ue046'
-                 PermissionEffect(owner=spaz.node, prefix=tag, prefixAnim={0: (
-                     1, 0, 0), 250: (0, 1, 0), 250*2: (0, 0, 1), 250*3: (1, 0, 0)})
+            # if cl_str in rol['toppers']:
+            #      tag = getTag(1)
+            #      if tag == '0':
+            #          tag = u'\ue046TOP-RANK\ue046'
+            #      PermissionEffect(owner=spaz.node, prefix=tag, prefixAnim={0: (
+            #          1, 0, 0), 250: (0, 1, 0), 250*2: (0, 0, 1), 250*3: (1, 0, 0)})
             # efecto glitch name
             if cl_str in ["pb-IF4xVUg4FA==", "pb-IF4TVRUdDg==", "pb-IF4zV2JdMw=="]:
                 self._evilTimer = bs.Timer(

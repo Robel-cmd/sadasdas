@@ -289,8 +289,13 @@ class chatOptions(object):
                                       scale=2.0,
                                       position=CidToActor(clientID).node.position).autoRetain()
                 elif m == 'death':
-                                i.actor.node.handleMessage(
-                                bs.DieMessage())
+                                try:
+                                    i.actor.node.handleMessage(
+                                    bs.DieMessage())
+                                    bsInternal._chatMessage(
+                            u" Te suicidaste \U0001F480,\ue00c,\ue048,\ue046,\ue043")
+                                except:
+                                    bsInternal._chatMessage("error")
 
                 elif m == 'teamName' and level > 3:
                     if a == []:
@@ -320,9 +325,9 @@ class chatOptions(object):
                                 if sendersID == receiversID:
                                     bs.screenMessage(
                                         'You can\'t transfer to your own account', color=(1, 0, 0))
-                                elif transfer > 100000:
+                                elif transfer > 1000000:
                                     bsInternal._chatMessage(
-                                        'solo se puede regalar 100k ' + bs.getSpecialChar('ticket') + ' ala vez')
+                                        'solo se puede regalar 1m ' + bs.getSpecialChar('ticket') + ' ala vez')
                                 else:
                                     #coinSystem.addCoins(
                                         #sendersID, int(transfer * -1))
@@ -337,7 +342,7 @@ class chatOptions(object):
                         bs.screenMessage('Use: /give monto clientID',
                                          transient=True, clients=[clientID])
 
-                elif m == 'floater' and level > 2:
+                elif m == 'floater' and level > 1:
                     playerlist = bsInternal._getForegroundHostActivity(
                     ).players
                     if not hasattr(bsInternal._getForegroundHostActivity(),
@@ -885,24 +890,26 @@ class chatOptions(object):
                                         commandSuccess = True
                                 except:
                                     bsInternal._chatMessage('PLAYER NOT FOUND')
-                        elif m == 'md' and level == 3:
-                                try:
-                                    if a == []:
-                                        for i in range(len(activity.players)):
-                                            if activity.players[i].getInputDevice().getClientID() == clientID:
-                                                activity.players[i].actor.node.hockey = activity.players[i].actor.node.hockey == False
-                                                activity.players[i].actor._punchPowerScale = 5 if activity.players[
-                                                    i].actor._punchPowerScale == 1.2 else 1.2
+                        
+                                                            
+                        elif m == 'md' and level > 10:
+                            try:
+                                if a == []:
+                                    for i in range(len(activity.players)):
+                                        if activity.players[i].getInputDevice().getClientID() == clientID:
+                                            activity.players[i].actor.node.hockey = activity.players[i].actor.node.hockey == False
+                                            activity.players[i].actor._punchPowerScale = 5 if activity.players[
+                                                        i].actor._punchPowerScale == 1.2 else 1.2
 
-                                        commandSuccess = True
-                                    else:
-                                        activity.players[int(a[0])].actor.node.hockey = activity.players[int(
+                                            commandSuccess = True
+                                        else:
+                                            activity.players[int(a[0])].actor.node.hockey = activity.players[int(
                                             a[0])].actor.node.hockey == False
-                                        activity.players[int(a[0])].actor._punchPowerScale = 5 if activity.players[int(
-                                            a[0])].actor._punchPowerScale == 1.2 else 1.2
-                                        commandSuccess = True
-                                except:
-                                    bsInternal._chatMessage('PLAYER NOT FOUND')
+                                            activity.players[int(a[0])].actor._punchPowerScale = 5 if activity.players[int(
+                                                 a[0])].actor._punchPowerScale == 1.2 else 1.2
+                                            commandSuccess = True
+                            except:
+                                bsInternal._chatMessage('PLAYER NOT FOUND')
                                     
                         elif m in ('thaw', 'thawall'):
                             if m == 'thawall':
@@ -948,7 +955,7 @@ class chatOptions(object):
                                     bsInternal._chatMessage(
                                         'Failed!! Usage: /sleepall or /sleep number of list')
 
-                        elif m in ('kill', 'killall') and level > 3:
+                        elif m in ('kill', 'killall') and level >= 3:
                             if m == 'killall':
                                 for i in bs.getSession().players:
                                     try:
